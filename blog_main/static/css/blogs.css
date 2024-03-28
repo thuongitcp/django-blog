@@ -71,3 +71,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size:20px;
   color: red !important;
 }
+.cat-text {
+  text-decoration: none;
+  color: black;
+}
+.cat-text:hover {
+  display: block;
+  color: blue !important;
+}

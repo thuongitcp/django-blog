@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block content %}
+<h3 class="text-warning" style="letter-spacing: 2px;">Results of search with keyword: {{ keyword }}<h3>
+    <div class="row mb-2">
+      {% if blogs %}
+          {% for item in blogs %}
+              <div class="col-md-6 px-0">
+              <div class="card border-0" >
+                  <div class="card-body">
+                  <h3><a href="{% url 'blogs' item.slug %}" style="text-decoration: none;" class="text-dark">{{item.title}}</a></h3>
+                  <small class="mb-1 text-muted">{{ item.updated_at | timesince }} ago | {{ item.author.first_name }} {{ item.author.last_name }}</small>
+                  <p class="card-text" style="font-size: 1.25rem; line-height: 1.6; font-weight:300">{{ item.short_description | truncatewords:25 }}</p>
+                  </div>
+              </div>
+              </div>
+          {% endfor %}
+      {% else %}
+          <div class="col-md-6 px-0">
+              <div class="card-body">    
+                  <p class="lead my-3">No posts found</p>
+              </div>
+          </div>    
+      {% endif %}
+    </div>
+   {% comment %} {% endfor %} {% endcomment %}
+  </div>
+{% endblock content %}
