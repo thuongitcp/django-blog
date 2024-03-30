@@ -5,7 +5,8 @@
 }
 
 .blog-header-logo {
-  font-family: "IBM Plex Sans", Georgia, "Times New Roman", serif;
+  /* font-family: "IBM Plex Sans", Georgia, "Times New Roman", serif; */
+  font-family: "IBM Plex Sans"!important;
   font-size: 2.25rem;
 }
 
@@ -14,7 +15,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "IBM Plex Sans", Georgia, "Times New Roman", serif;
+  font-family: "IBM Plex Sans"!important;
 }
 
 .display-4 {
@@ -72,8 +73,8 @@ h1, h2, h3, h4, h5, h6 {
   color: red !important;
 }
 .cat-text {
-  text-decoration: none!important;
-  color: black!important;
+  text-decoration: none;
+  color: black;
 }
 .cat-text:hover {
   display: block;

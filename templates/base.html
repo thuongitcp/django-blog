@@ -18,12 +18,12 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="blog-header-logo text-dark" href="/">Django Blog</a>
+            <a class="blog-header-logo" href="/" style="font-weight:900; color:green;">R&D-AXONS Blog</a>
           </div>
           <div class="col-4 pt-1" >
             <form action="{% url 'search' %}" method="GET">
               <div class="input-group">
-                <input class="form-control" type="text" name="keyword" value="{{ keyword }}" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                <input class="form-control" type="text" name="keyword" value="{{ keyword }}" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" /><p style="margin-right:5px;"> </p>
                 <button type="submit " class="btn btn-warning" id="button-search" type="button">Go!</button>
             </div>
             </form>
@@ -34,7 +34,8 @@
               <div class="nav-item">
                 <small class="nav-link">Welcome, {{ user.username }}!</small>
               </div>
-              <a class="btn btn-sm btn-primary" href="{% url 'logout' %}">Logout</a> &nbsp;
+              <a href="{% url 'dashboard' %}" style="text-decoration: None">Dashboard</a> &nbsp;
+              <a href="{% url 'logout' %}" style="text-decoration: None">Logout</a>
             {% else %}
               <div class="nav-item">
                 <small class="nav-link">Welcome, guest!</small>
