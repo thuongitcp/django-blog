@@ -1,15 +1,16 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<hr><br/>
-<div class="row">
+<hr>
+<div class="row mb-2">
     <!-- Left sidebar content -->
     <!-- Load the sidebar -->
     {% include 'dashboard/sidebar.html'%}
     <!-- Right sidebar content -->
     <div class="col-md-9">
         <span>Logged in as <b>{{ user }}</b></span>
-        <div class="row">
+
+        <div class="row mt-2">
             <div class="col">
                 <div class="card border-default mb-3">
                     <div class="card-header text-center text-uppercase font-weight-bold">All Categories</div>
