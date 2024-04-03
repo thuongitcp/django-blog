@@ -137,3 +137,8 @@ MEDIA_ROOT = BASE_DIR /'media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+USE_I18N = True
+USE_L10N = False 

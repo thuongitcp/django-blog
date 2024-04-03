@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<hr>
+<div class="row mb-2">
+    <!-- Left sidebar content -->
+    <!-- Load the sidebar -->
+    {% include 'dashboard/sidebar.html'%}
+    <!-- Right sidebar content -->
+    <div class="col-md-9">
+        {% if permissions == False %}
+            <h5>You do not have authorized at here.</h5>
+
+        {% endif %}
+    </div>
+</div>
+{% endblock content  %}

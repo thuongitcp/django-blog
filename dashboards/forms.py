@@ -1,6 +1,8 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from blogs.models import Category, Blog
+from django.contrib.auth.models import User
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -19,12 +21,15 @@ class BlogPostForm(forms.ModelForm):
         model = Blog
         fields = ('title', 'category', 'featured_image', 'short_description', 'blog_body', 'status', 'is_featured')
 
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'class': 'form-control'}),
-        #     'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
-        #     'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'owner_user', 'type': 'hidden'}),
-        #     'blog_body': forms.Textarea(attrs={'class': 'form-control'}),
-        #     # 'status': forms.TextInput(attrs={'class': 'form-control'}),
-        #     # 'is_featured': forms.Boo(attrs={'class': 'form-control'}),
 
-        # }
+class AddUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+
+
+class EditUserForm(forms.ModelForm):
+    # password = None
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')

@@ -4,8 +4,10 @@ from django.shortcuts import redirect, render
 from blogs.models import Blog, Category
 from django.contrib.auth.decorators import login_required
 
-from dashboards.forms import CategoryForm, BlogPostForm
+from dashboards.forms import CategoryForm, BlogPostForm, AddUserForm,  EditUserForm
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
+
 
 def vi_slug(data):
     vietnamese_map = {
@@ -164,5 +166,63 @@ def del_post(request, pk):
         post = Blog.objects.get(id=pk)
         post.delete()
         return redirect('posts')
+    except:
+        return render(request, '404.html')
+    
+
+def users(request):
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    # print(users)
+    return render(request, 'dashboard/users.html', context)
+
+
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+        else:
+            print(form.errors)
+    form = AddUserForm()
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'accounts/add_user.html', context)
+
+
+def edit_user(request, pk):
+    try:
+        e_user = User.objects.get(id=pk)
+        if request.method == 'POST':
+            form = EditUserForm(request.POST, instance=e_user)
+            if form.is_valid():
+                form.save()
+                return redirect('users')
+        form = EditUserForm(instance=e_user)
+        context = {
+            'e_user': e_user,
+            'form': form,
+        }
+        return render(request,'accounts/edit_user.html', context)
+    except:
+         return render(request, '404.html')
+    
+def del_user(request, pk):
+    try:
+        user = User.objects.get(id=pk)
+        if not request.user.is_superuser:
+            permissions = False
+            context = {
+                'permissions': permissions,
+            }
+            return render(request, 'dashboard/messenger.html', context)
+        else:
+            user.delete()
+            return redirect('users')
     except:
         return render(request, '404.html')
