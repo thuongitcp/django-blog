@@ -57,6 +57,46 @@
                     </div>
                 {% endif %}
             </div>
+            <div class="col-lg-8">
+                <h5><i class='fa fa-comments text-success' style='font-size:24px'></i>&nbsp &nbsp Comments  &nbsp  ({{ comments.count }})</h5>
+                <hr>
+                {% if comments %}
+                    {% for comment in comments%}
+                        <div class="card mt-2">
+                            <div class="card-body">
+                                <span card-text mb-0><small><b>Author: {{ comment.user.first_name}} {{ comment.user.last_name}}</b> - {{ comment.created_at }}</small></span>
+                                <p>{{ comment.comment}}</p>
+                            </div>
+                        </div>
+                        
+                    {% endfor%}
+                {% else%}
+                    <div class="card">
+                        <div class="card-body">
+                            <h6>No comment for this post.</h6><br/>
+                        </div>
+                    </div>
+                    <br/>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <div class="form-ground mt-2">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Write your comment"></textarea>
+                            <input type="submit" value="Submit" class="btn btn-primary mt-2">
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                    <div class="card mt-3 mb-3">
+                        <div class="card-body">
+                            <span class="text-dark">You are not logged in. Please log in to comment &nbsp<a href="{% url 'login' %}">Login</a></span>
+                        </div>
+                    </div>
+                {% endif %}
+                
+            </div>
         </div>
     </div>
 {% endblock content %}
